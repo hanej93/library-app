@@ -5,7 +5,7 @@ import com.group.libraryapp.domain.user.userloanhistory.UserLoanHistory
 import javax.persistence.*
 
 @Entity
-class User(
+class User constructor(
     var name: String,
 
     var age: Int?,
