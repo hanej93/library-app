@@ -4,8 +4,8 @@ import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
-import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
+import com.group.libraryapp.domain.user.userloanhistory.UserLoanHistory
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
@@ -71,7 +71,13 @@ class BookServiceTest @Autowired constructor(
         // given
         bookRepository.save(Book("이상한 나라의 엘리스"))
         val savedUser = userRepository.save(User("한의진", null))
-        userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 엘리스", false))
+        userLoanHistoryRepository.save(
+            UserLoanHistory(
+                savedUser,
+                "이상한 나라의 엘리스",
+                false
+            )
+        )
         val request = BookLoanRequest("한의진", "이상한 나라의 엘리스")
 
         // when & then
@@ -87,7 +93,13 @@ class BookServiceTest @Autowired constructor(
     fun returnBookTest() {
         // given
         val savedUser = userRepository.save(User("한의진", null))
-        userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 엘리스", false))
+        userLoanHistoryRepository.save(
+            UserLoanHistory(
+                savedUser,
+                "이상한 나라의 엘리스",
+                false
+            )
+        )
         val request = BookReturnRequest("한의진", "이상한 나라의 엘리스")
 
         // when
